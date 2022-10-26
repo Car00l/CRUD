@@ -11,6 +11,6 @@ $query = "INSERT INTO alunos(Nome, Idade, Altura, Escolaridade) VALUES ('$nome',
 
 mysqli_query($conexao, $query);
 
-header('Location: aluno.html');
+header('Location: visualizar_aluno.php');
 
 ?>
