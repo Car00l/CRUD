@@ -1,40 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <title>Visualizar Alunos</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-<body>      
+<body>
+    <table style="border: 2px solid #ccc">
+        <thead>
+            <tr>
+                <th>Nome do aluno</th>
+                <th>Idade</th>
+                <th>Excluir</th>
+                <th>Editar</th>
+            </tr>
+        
+    </thead>
 
-<table style=" border: 1px solid #ccc"> 
-<thead>
+    <tbody>
 
-<tr>
-    <th> Nome do Aluno </th>
-    <th> Idade </th>
-    <th> Editar </th>
-    <th> Excluir </th>
-</tr>
+    <?php
 
-</thead>
-<tbody>
+    include 'conexao.php';
 
+    //Laço que percorrer o banco de transformar os dados em vetor
+    while($linha = mysqli_fetch_array($consulta_aluno)){
+        echo '<tr><td border: 1px solid #ccc;>' . $linha['Nome'] . '</td>';
+        echo '<td>' . $linha['Idade'] . '</td>';
+    ?>
 
-<?php
+        <td><a href="deleta_aluno.php?ID=<?php echo $linha['ID']; ?>">
+        <input type="submit" value="DELETAR"/>
+    </a></td></tr>
 
-include 'conexao.php';
-
-// Laço que percorre o banco de dados e transforma os dados em vetores
-while ($linha = mysqli_fetch_array($consulta_aluno)){
-    echo '<tr border 1px solid #ccc;><td border 1px solid #ccc;>' . $linha['Nome'] . '</td>';
-    echo '<td>' . '<td border 1px solid #ccc;>' . $linha['Idade'] . '<td></tr>';
-?>
-</tbody>
-<?php
-}
-?>
-
-</table>
+    <?php
+    }
+    ?>
+    </tbody>
+    </table>
+</body>
 </html>
