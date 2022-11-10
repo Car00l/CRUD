@@ -12,8 +12,8 @@
             <tr>
                 <th>Nome do aluno</th>
                 <th>Idade</th>
-                <th>Excluir</th>
                 <th>Editar</th>
+                <th>Deletar</th>
             </tr>
         
     </thead>
@@ -30,6 +30,12 @@
         echo '<td>' . $linha['Idade'] . '</td>';
     ?>
 
+    <td>
+        <a href="aluno.php&editar=<?php echo $linha['ID'];?>">
+        <input type="submit" value="EDITAR"/>
+    </a>
+    </td>
+
         <td><a href="deleta_aluno.php?ID=<?php echo $linha['ID']; ?>">
         <input type="submit" value="DELETAR"/>
     </a></td></tr>
@@ -39,5 +45,7 @@
     ?>
     </tbody>
     </table>
+
+    <button><a href="aluno.php"> Voltar</a></button>
 </body>
 </html>
