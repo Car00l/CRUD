@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-    <title>Cadastro Aluno</title>
+    <title>Alunos</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
 
@@ -11,7 +11,7 @@
 <body>
 
 <?php
-if (isset($_GET['editar'])){
+if (!isset($_GET['edita'])){
 ?>
     <form method="POST" action="adiciona_aluno.php">
 
@@ -32,50 +32,36 @@ if (isset($_GET['editar'])){
         <input type="submit" value="Cadastrar"> </br></br>
     </form>
 
-    <?php
-    }else{
-    ?>
-    <form method="POST" action="editar_aluno.php">
-
-    <?php 
-    include 'conexao.php';
-
+    <?php }else{ ?>
+<?php include 'conexao.php';            
+    $consulta = "SELECT * FROM alunos";
     $consulta2 = mysqli_query($conexao, $consulta);
 
-    while($linha  = mysqli_fetch_array($consulta2)){
-    ?>
+    while($linha = mysqli_fetch_array($consulta2)){ ?>
+    <?php if($linha['ID'] == $_GET['edita']){ ?>
 
-<?php
-    if($linha['ID'] == $_POST['editar']){
-?>
-
+    <form method="POST" action="edita_aluno.php">
 
 <h3>Editar Aluno</h3></br>
 
-    <input type="hidden" name="id" value="<?php echo $linha['ID']; ?>" />
+    <input type="hidden" name="ID" value="<?php echo $linha['ID']; ?>" />
     <label>Nome:</label>
-    <input type="text" name="nome" value="<?php echo $linha['Nome'];?>"> </br></br>
+    <input type="text" name="Nome" value="<?php echo $linha['Nome'];?>"> </br></br>
 
     <label>Idade:</label>
-    <input type="number" name="idade" value="<?php echo $linha['Idade'];?>"> </br></br>
+    <input type="text" name="Idade" value="<?php echo $linha['Idade'];?>"> </br></br>
 
     <label>Altura:</label>
-    <input type="text" name="altura" value="<?php echo $linha['Altura'];?>"> </br></br>
+    <input type="text" name="Altura" value="<?php echo $linha['Altura'];?>"> </br></br>
 
     <label>Escolaridade:</label>
-    <input type="text" name="escolaridade" value="<?php echo $linha['Escolaridade'];?>"> </br></br>
+    <input type="text" name="Escolaridade" value="<?php echo $linha['Escolaridade'];?>"> </br></br>
 
     <input type="submit" value="Editar"> </br></br>
     </form>
 
-    <?php
-    }
-    ?>
-    <?php
-    }
-    ?>
-    <?php
-    }
-    ?>
-</body>
-</html>
+    <?php } ?>  <!--FECHA CHAVE DO IF-->
+            <?php } ?> <!--FECHA CHAVE DO WHILE-->
+        <?php } ?> <!--FECHA CHAVE DO ELSE-->
+    </body>
+</hmtl>

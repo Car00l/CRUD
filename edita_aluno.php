@@ -8,9 +8,9 @@ $idade = $_POST['Idade'];
 $altura = $_POST['Altura'];
 $escolaridade = $_POST['Escolaridade'];
 
-$consulta = "UPDATE alunos SET Nome = $nome, Idade = $idade, Altura = $altura, Escolaridade = $escolaridade WHERE ID = $id";
+$consulta = "UPDATE alunos SET Nome = '$nome', Idade = $idade, Altura = $altura, Escolaridade = '$escolaridade' WHERE ID = $id";
 
 mysqli_query($conexao, $consulta);
 
-header("Location: visualizar_aluno.php");
+header('location: visualizar_aluno.php');
 ?>
