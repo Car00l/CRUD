@@ -1,0 +1,9 @@
+<?php
+
+include 'conexao.php';
+
+$cod_aluno = $_POST['escolha_aluno'];
+$cod_curso = $_POST['escolha_curso'];
+
+$query = "INSERT "
+?>
